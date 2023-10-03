@@ -1,24 +1,43 @@
-// toglogchiin eeljiig hadgalah huwisagch 1-r toglogch 0, 2-r toglogch 1;
-var activePlayer = 0;
+// global huwsagchdiig zarlaj baina idewhtei toglogch, onoo, eeljiin onoo
+var activePlayer;
+var scores;
+var roundScore;
 
-// toglogchiin onood hadgalah huwisagch
-var scores = [0, 0];
-
-// toglogchiin eeljindee tsugluulj bui onoog hadgalah huwisagch
-var roundScore = 0;
-
-// shoonii ali talaaraa buusniig tsugluulah huwisagch heregtei, 1-6 gesen utgiig ene huwsagchid sanamsarguigeer uusgej ugnu.
-
-// togloom ehelhed beltgel ajil
-
-document.getElementById("score-0").textContent = "0";
-document.getElementById("score-1").textContent = "0";
-document.getElementById("current-0").textContent = "0";
-document.getElementById("current-1").textContent = "0";
-
+//shoonii zurgiig uzuuleh elementiig DOM-oos haij olood end hadgaliya
 var diceDom = document.querySelector(".dice");
 
-diceDom.style.display = "none";
+// togloomiig ehluulne
+initGame();
+// togloomiin ehlehed zoriulsan
+function initGame() {
+  // toglogchiin eeljiig hadgalah huwisagch 1-r toglogch 0, 2-r toglogch 1;
+  activePlayer = 0;
+  // toglogchiin onood hadgalah huwisagch
+  scores = [0, 0];
+  // toglogchiin eeljindee tsugluulj bui onoog hadgalah huwisagch
+  roundScore = 0;
+  // shoonii ali talaaraa buusniig tsugluulah huwisagch heregtei, 1-6 gesen utgiig ene huwsagchid sanamsarguigeer uusgej ugnu.
+  // togloom ehelhed beltgel ajil
+  document.getElementById("score-0").textContent = "0";
+  document.getElementById("score-1").textContent = "0";
+  document.getElementById("current-0").textContent = "0";
+  document.getElementById("current-1").textContent = "0";
+
+  //toglogchdiin neriig butsaaj gargana
+  document.getElementById("name-0").textContent = "PLAYER 1";
+  document.getElementById("name-1").textContent = "PLAYER 2";
+
+  document.querySelector(".player-0-panel").classList.remove("winner");
+  document.querySelector(".player-1-panel").classList.remove("winner");
+
+  document.querySelector(".player-0-panel").classList.remove("active");
+  document.querySelector(".player-1-panel").classList.remove("active");
+
+  document.querySelector(".player-0-panel").classList.add("active");
+
+  diceDom.style.display = "none";
+}
+
 document.querySelector(".btn-roll").addEventListener("click", function () {
   // 1-6 dotorh toog sanamsargui neg too gargaj irne.
   var diceNumber = Math.floor(Math.random() * 6) + 1;
@@ -72,3 +91,10 @@ function switchToNextPlayer() {
   // shoog tur huwaana
   diceDom.style.display = "none";
 }
+
+// new game button event listener
+document.querySelector(".btn-new").addEventListener(
+  "click",
+
+  initGame
+);
